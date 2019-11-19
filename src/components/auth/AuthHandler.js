@@ -28,7 +28,7 @@ const AuthHandler = {
        * @returns {Promise}
        */
       signInWithUsernameAndPassword(email, password, remember_me) {
-        store
+        return store
           .dispatch(LOGIN, { email, password, remember_me })
           .then(result => {
             saveServerToken(backendServer, result.data);
@@ -46,7 +46,7 @@ const AuthHandler = {
        * @returns {Promise}
        */
       activate(token, password, repeat_password) {
-        store.dispatch(ACTIVATE, { token, password, repeat_password });
+        return store.dispatch(ACTIVATE, { token, password, repeat_password });
       },
 
       // /**

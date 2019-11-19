@@ -1,11 +1,36 @@
-@import '../../general/settings';
+// Vue2-notify alert
+$alert-color--info: #2196f3;
+$alert-color--success: #4caf50;
+$alert-color--warning: #fb8c00;
+$alert-color--error: #ff5252;
+
 
 .alert
 {
-    color: $color-default;
-    padding: $indent-3;
-    text-align: center;
-    border-radius: $border-radius;
-    font-weight: $font-weight-semibold;
-    background: $color-grey-dark;
+  font-family: "Roboto", sans-serif;
+  color: white;
+  text-align: left;
+  border-radius: 4px;
+}
+
+
+.alert--info
+{
+    @extend .alert;
+    background: $alert-color--info;
+}
+.alert--success
+{
+    @extend .alert;
+    background: $alert-color--success;
+}
+.alert--warning
+{
+    @extend .alert;
+    background: $alert-color--warning;
+}
+.alert--error
+{
+    @extend .alert;
+    background: $alert-color--error;
 }

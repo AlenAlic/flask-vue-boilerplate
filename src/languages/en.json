@@ -3,7 +3,7 @@
     "home": "Home",
     "styleguide": "Styleguide",
     "auth": "Authentication",
-    "signout": "Log out",
+    "sign-out": "Log out",
     "dashboard": "Dashboard"
   },
   "page_not_found": "Sorry, this page does not exist...",

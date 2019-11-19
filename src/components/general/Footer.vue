@@ -1,10 +1,9 @@
 <template>
-  <footer class="footer">
-    <img class="footer__logo" src="../../assets/logo-vue.png" alt="FVB" title="FVB" height="32px" />
-    <div class="footer__text">
-      &copy; {{ new Date().getFullYear() }} {{ $t("footer.copyrights") }}
-    </div>
-  </footer>
+  <v-footer>
+    <v-col class="text-center" cols="12">
+      {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+    </v-col>
+  </v-footer>
 </template>
 
 <script>

@@ -1,17 +1,16 @@
 <template>
-  <div class="wrapper" id="app">
+  <v-app>
     <Header></Header>
-    <main class="main">
-      <div class="container no-padding full-height">
-        <router-view></router-view>
-      </div>
-    </main>
+
+    <v-content>
+      <router-view></router-view>
+    </v-content>
+
     <Footer></Footer>
-  </div>
+  </v-app>
 </template>
 
 <script>
-import "@mdi/font/css/materialdesignicons.css";
 import Header from "@/components/general/Header";
 import Footer from "@/components/general/Footer";
 
