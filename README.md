@@ -1,29 +1,32 @@
-# flask-vue-boilerplate
+# Flask Vue Boilerplate
 
-## Project setup
-```
-npm install
-```
+## Starting a new project from this boilerplate
+1. Download this project from GitHub.
+2. Create a new GitHub repository for the project.
+3. Install the base dependencies (`pip install -r requirements.txt` and `npm install`).
+4. Copy the `/public/config/development.json.example` to `/public/config/development.json` and customize it as desired.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
 
-### Compiles and minifies for production
-```
-npm run build
-```
 
-### Run your tests
-```
-npm run test
-```
+## Project setup 
+### Compiles and hot-reloads frontend for development
+`npm run serve`
+
+This exposes the frontend on `http://127.0.0.1:8080`.
 
 ### Lints and fixes files
-```
-npm run lint
-```
+`npm run lint`
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Runs the backend in debug mode.
+`python run.py`
+
+This exposes the backend on `http://127.0.0.1:4040`.
+
+
+## Tweaks
+### Remove references to boilerplate
+- Change the name in `package.json` and `package-lock.json`.
+- Change the short name in `/public/manifest.json`.
+- Change the `TOKEN_PREFIX` constant in `/src/api/util/token-storage.js`.
+- Change any references in `/public/index.html`.
+- Change any references in `/public/manifest.json`.
