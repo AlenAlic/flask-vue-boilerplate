@@ -1,0 +1,13 @@
+.is-loading
+{
+    @include spin;
+}
+
+.has-text-center {
+    text-align: center;
+}
+
+.has-component-centered {
+    display: flex;
+    justify-content: center;
+}

@@ -1,0 +1,92 @@
+//Breakpoints (standard Bootstrap 4, to be used with max-width)
+$screen-xs: 575px;
+$screen-sm: 767px;
+$screen-md: 991px;
+$screen-lg: 1199px;
+$screen-xxl: 1399px;
+
+//Layout indents
+$multiplier: 1rem; //Every indent is always a multiplication of 0.8 (=10px)
+
+$indent-xs: 0.5 * $multiplier;   //0.5rem / 5px
+$indent-1: 1 * $multiplier;      //1.0rem / 10px
+$indent-2: 2 * $multiplier;      //2.0rem / 20px
+$indent-3: 3 * $multiplier;      //3.0rem / 30px
+$indent-4: 4 * $multiplier;      //4.0rem / 40px
+$indent-5: 5 * $multiplier;      //5.0rem / 50px
+$indent-6: 6 * $multiplier;      //6.0rem / 60px
+$indent-7: 7 * $multiplier;      //7.0rem / 70px
+$indent-8: 8 * $multiplier;      //8.0rem / 80px
+$indent-9: 9 * $multiplier;      //9.0rem / 90px
+$indent-10: 10 * $multiplier;    //10.0rem / 100px
+
+$indent-base: 1*6 * $multiplier;  //Standard grid gutter width
+
+//Layout general
+$input-height: 4 * $multiplier; //4rem
+$header-height: 6 * $multiplier; //6rem
+
+//Borders
+$border-radius: 0.4rem;
+
+//Colors
+$color-default: #fff;                               //White
+$color-theme: #6287BB;                              //Blue
+$color-theme-light: #acc3e3;                        //Light Blue
+$color-theme-dark: #31496B;                         //Dark blue
+$color-cta: #f57223;                                //Orange
+$color-success: #3baf4a;                            //Green
+$color-alert: #e72e01;                              //Red
+$color-grey: #999;                                  //Grey
+$color-grey-dark: #555;                             //Dark grey
+$color-grey-light: #efefef;                         //Very light grey
+$color-disabled: #9c9ca1;                           //Grey
+$color-transparent-dark: rgba(0,0,0,0.9);           //Black 90% opacity
+$color-grey-90-o: rgba($color-grey, 0.9);           //Black 90% opacity
+$color-grey-80-o: rgba($color-grey, 0.8);           //Black 80% opacity
+$color-grey-60-o: rgba($color-grey, 0.6);           //Black 60% opacity
+$color-grey-40-o: rgba($color-grey, 0.4);           //Black 40% opacity
+$color-grey-20-o: rgba($color-grey, 0.2);           //Black 20% opacity
+$color-grey-10-o: rgba($color-grey, 0.10);          //Black 10% opacity
+
+$color-bg: $color-default;
+$color-text: $color-grey-dark;
+$color-link: $color-theme;
+$color-border: $color-grey;
+$color-border-light: $color-border;
+$color-border-dark: $color-grey-dark;
+
+//Fonts
+$font-default: "Lato", sans-serif;
+$font-header: $font-default;
+$font-icon: "Material Design Icons";
+
+//Line heights
+$line-height-xs: 2 * $multiplier;   //2rem
+$line-height-s: 2.5 * $multiplier;  //2.5rem
+$line-height-m: 3 * $multiplier;    //3rem
+$line-height-l: 4 * $multiplier;    //4rem
+$line-height-relative: 1.5;
+
+$line-height-default: $line-height-m;
+
+//Font sizes
+$font-size-xs: 1.0 * $multiplier; //1.0rem
+$font-size-s: 1.3 * $multiplier; //1.3rem
+$font-size-m: 1.6 * $multiplier; //1.6rem
+$font-size-l: 2.4 * $multiplier; //2.4rem
+$font-size-default: $font-size-m;
+
+$font-size-icon-s: 2 * $multiplier;
+$font-size-icon-m: 3 * $multiplier;
+$font-size-icon-l: 4 * $multiplier;
+
+$font-size-icon: $font-size-icon-m;
+
+//Font weights
+$font-weight-light: 300;
+$font-weight-regular: 400;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+

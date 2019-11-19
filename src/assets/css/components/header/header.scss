@@ -1,0 +1,80 @@
+@import '../../general/settings';
+@import '../../general/mixins';
+
+.header
+{
+    position: sticky;
+    min-height: $header-height;
+    height: $header-height;
+    padding: $indent-1 $indent-3 $indent-1;
+    background: $color-default;
+    line-height: $line-height-default;
+    text-align: center;
+    z-index: 1000;
+    top: 0;
+
+    @include drop-shadow-color(0, 1px, 3px, 0, $color-grey-dark);
+
+    .header__logo
+    {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: $indent-3;
+        display: block;
+        max-height: $indent-4;
+        width: auto;
+        margin: auto;
+    }
+
+    .header__logout
+    {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        display: block;
+        line-height: $line-height-default;
+        padding: $indent-3 / 2 $indent-3 $indent-3 / 2;
+        background: $color-theme;
+        color: $color-default;
+        border: none;
+        font-size: $font-size-s;
+        text-transform: uppercase;
+        text-decoration: none;
+        height: $header-height;
+
+        @include transition();
+
+        &:hover,
+        &:active
+        {
+            background: $color-theme-dark;
+            color: $color-default;
+            cursor: pointer;
+        }
+    }
+
+    @media (max-width: $screen-md)
+    {
+
+        .header__logo
+        {
+            left: $indent-2;
+        }
+    }
+
+    @media (max-width: $screen-sm)
+    {
+        padding: $indent-1 $indent-1 $indent-1;
+
+        .header__logo
+        {
+            left: $indent-1;
+        }
+
+        .header__logout
+        {
+            right: -$indent-1;
+        }
+    }
+}
