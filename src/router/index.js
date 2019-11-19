@@ -4,7 +4,6 @@ import VueRouter from "vue-router";
 // Pages
 const Home = () => import("@/pages/Home.vue");
 const Styleguide = () => import("@/pages/Styleguide.vue");
-const Vuetify = () => import("@/pages/Vuetify.vue");
 const PageNotFound = () => import("@/pages/PageNotFound.vue");
 const DummyPage = () => import("@/pages/Dummy.vue");
 
@@ -28,15 +27,6 @@ const routes = [
     path: "/styleguide",
     name: "styleguide",
     component: Styleguide,
-    meta: {
-      auth: false,
-      debugRoute: true
-    }
-  },
-  {
-    path: "/vuetify",
-    name: "vuetify",
-    component: Vuetify,
     meta: {
       auth: false,
       debugRoute: true
