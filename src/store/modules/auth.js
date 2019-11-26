@@ -1,8 +1,8 @@
 import { AuthenticatedUser, authApi } from "@/api/auth";
-import { loadServerToken } from "@/api/util/token-storage";
+import { loadServerToken, saveServerToken } from "@/api/util/token-storage";
 import { backendServer } from "@/api/util/servers";
 
-const SET_USER = "LOGIN: Set user";
+const SET_USER = "AUTH: Set user";
 
 const LOGIN = "LOGIN";
 const LOGIN_REQUEST = "LOGIN: Login request sent.";
@@ -14,12 +14,22 @@ const LOGOUT_REQUEST = "LOGOUT: Logout request sent.";
 const LOGOUT_SUCCESS = "LOGOUT: Successful request.";
 const LOGOUT_ERROR = "LOGOUT: Failed request.";
 
+const RENEW = "RENEW";
+const RENEW_REQUEST = "RENEW: Renew token request sent.";
+const RENEW_SUCCESS = "RENEW: Successful request.";
+const RENEW_ERROR = "RENEW: Failed request.";
+
 const ACTIVATE = "ACTIVATE";
 const ACTIVATE_REQUEST = "ACTIVATE: Account activation request sent.";
 const ACTIVATE_SUCCESS = "ACTIVATE: Successful request.";
 const ACTIVATE_ERROR = "ACTIVATE: Failed request.";
 
-export { LOGIN, LOGOUT, ACTIVATE };
+const RESET_PASSWORD = "RESET_PASSWORD";
+const RESET_PASSWORD_REQUEST = "RESET_PASSWORD: Reset password request sent.";
+const RESET_PASSWORD_SUCCESS = "RESET_PASSWORD: Successful request.";
+const RESET_PASSWORD_ERROR = "RESET_PASSWORD: Failed request.";
+
+export { LOGIN, LOGOUT, RENEW, ACTIVATE, RESET_PASSWORD };
 
 const getUser = () => {
   const token = loadServerToken(backendServer);
@@ -33,8 +43,9 @@ export default {
     loading: false
   },
   mutations: {
-    [SET_USER](state, result) {
-      state.user = new AuthenticatedUser(result);
+    [SET_USER](state, token) {
+      saveServerToken(backendServer, token);
+      state.user = new AuthenticatedUser(token);
     },
 
     [LOGIN_REQUEST](state) {
@@ -58,6 +69,16 @@ export default {
       state.loading = false;
     },
 
+    [RENEW_REQUEST](state) {
+      state.loading = true;
+    },
+    [RENEW_SUCCESS](state) {
+      state.loading = false;
+    },
+    [RENEW_ERROR](state) {
+      state.loading = false;
+    },
+
     [ACTIVATE_REQUEST](state) {
       state.loading = true;
     },
@@ -65,6 +86,16 @@ export default {
       state.loading = false;
     },
     [ACTIVATE_ERROR](state) {
+      state.loading = false;
+    },
+
+    [RESET_PASSWORD_REQUEST](state) {
+      state.loading = true;
+    },
+    [RESET_PASSWORD_SUCCESS](state) {
+      state.loading = false;
+    },
+    [RESET_PASSWORD_ERROR](state) {
       state.loading = false;
     }
   },
@@ -74,13 +105,13 @@ export default {
       commit(LOGIN_REQUEST);
       return authApi
         .login(email, password, remember_me)
-        .then(resp => {
-          commit(SET_USER, resp.data);
+        .then(response => {
+          commit(SET_USER, response.data);
           commit(LOGIN_SUCCESS);
         })
-        .catch(({ status }) => {
+        .catch(error => {
           commit(LOGIN_ERROR);
-          throw { status };
+          throw error;
         });
     },
     // Sign a user out
@@ -89,24 +120,51 @@ export default {
       return authApi
         .logout()
         .then(() => {
+          saveServerToken(backendServer, null);
           commit(LOGOUT_SUCCESS);
         })
         .catch(error => {
           commit(LOGOUT_ERROR);
-          throw { error };
+          throw error;
+        });
+    },
+    // Renew user token
+    [RENEW]({ commit }) {
+      commit(RENEW_REQUEST);
+      return authApi
+        .renew()
+        .then(response => {
+          commit(SET_USER, response.data);
+          commit(RENEW_SUCCESS);
+        })
+        .catch(() => {
+          commit(RENEW_ERROR);
         });
     },
     // Activate user account
-    [ACTIVATE]: ({ commit }, { activation_token, password, repeat_password }) => {
+    [ACTIVATE]: ({ commit }, { token, password, repeat_password }) => {
       commit(ACTIVATE_REQUEST);
       return authApi
-        .activate(activation_token, password, repeat_password)
+        .activate(token, password, repeat_password)
         .then(() => {
           commit(ACTIVATE_SUCCESS);
         })
-        .catch(({ status, errors }) => {
+        .catch(error => {
           commit(ACTIVATE_ERROR);
-          throw { status, errors };
+          throw error;
+        });
+    },
+    // Reset user password
+    [RESET_PASSWORD]: ({ commit }, { token, password, repeat_password }) => {
+      commit(RESET_PASSWORD_REQUEST);
+      return authApi
+        .resetPassword(token, password, repeat_password)
+        .then(() => {
+          commit(RESET_PASSWORD_SUCCESS);
+        })
+        .catch(error => {
+          commit(RESET_PASSWORD_ERROR);
+          throw error;
         });
     }
   },

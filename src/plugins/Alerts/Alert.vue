@@ -20,8 +20,8 @@
 </template>
 <style lang="scss" scoped>
 $icon-padding: 4rem;
-$icon-font-size: 1.5rem;
-$alert-padding: 1.25rem;
+$icon-font-size: 1.25rem;
+$alert-padding: 1rem;
 $center-width: 800px;
 $indent-small: 0.4rem;
 $indent-large: 1rem;
@@ -35,7 +35,7 @@ $indent-large: 1rem;
   }
 
   &.notify-top {
-    top: 5rem !important;
+    top: 2rem !important;
   }
 }
 .notification {
@@ -97,7 +97,6 @@ $indent-large: 1rem;
 .notify-bottom-right,
 .notify-bottom-left {
   position: fixed;
-  z-index: 1;
 }
 
 .notify-top {

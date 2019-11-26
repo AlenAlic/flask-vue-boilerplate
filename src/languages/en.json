@@ -1,31 +1,7 @@
 {
   "menu": {
-    "home": "Home",
-    "styleguide": "Styleguide",
-    "auth": "Authentication",
-    "sign-out": "Log out",
-    "dashboard": "Dashboard"
-  },
-  "page_not_found": "Sorry, this page does not exist...",
-  "navigation": {
-    "go_back": "Go back"
-  },
-  "auth": {
-    "header_signin": "Log in with username and password",
-    "header_forgotten_password": "Forgot your password?",
-    "header_reset_password": "Change your password",
-    "message_forgotten_password": "Enter your e-mail address below and we will send you an e-mail to reset your password.",
-    "hint_email": "E-mail address",
-    "hint_password": "Password",
-    "button_signin": "Log in",
-    "button_reset_password": "Reset password",
-    "button_cancel": "Cancel",
-    "button_change_password": "Change password",
-    "link_no_account": "Don't have an account?",
-    "link_forgot_password": "Forgot your password?"
-  },
-  "footer": {
-    "copyrights": "All rights reserved"
+    "dashboard": "Dashboard",
+    "profile": "Profile"
   },
   "network-errors": {
     "unknown": "Something went wrong while executing your request, please try again later.",
@@ -36,6 +12,60 @@
     "server-timeout": "The server took too long to respond, please try again. If this keeps happening, please contact the administrator",
     "server-cors": "There seems to have been a CORS issue with the server. If this keeps happening, please contact the administrator",
     "bad-request": "Incomplete request sent, please check it and try again.",
-    "payload-too-large": "The file is too large to be uploaded."
+    "payload-too-large": "The file is too large to be uploaded.",
+    "network": "Cannot connect to the server."
+  },
+  "general": {
+    "cancel": "Cancel"
+  },
+  "navigation": {
+    "page_not_found": "This page does not exist.",
+    "go_back": "Go back",
+    "back_to_home_page": "Back to home page",
+    "back_to_login_page": "Back to login page"
+  },
+  "auth": {
+    "activate": {
+      "title": "Activate your account",
+      "verifying_token": "Verifying token",
+      "verification_error": "Something went wrong, could not verify activation token.",
+      "set_password": "Please set a password to activate your account.",
+      "activate": "Activate account",
+      "unknown_code": "Unknown activation code.",
+      "error": ""
+    },
+    "password": "Password",
+    "repeat_password": "Repeat password",
+    "email": "E-mail",
+    "remember_me": "Remember me",
+    "log_in": "Log in",
+    "log_out": "Log out",
+    "forgot_password": "Forgot password?",
+    "request_new_password": "Request new password",
+    "reset_password": "Reset password",
+    "password_reset_email_sent": {
+      "title": "E-mail sent",
+      "text": "An e-mail with instruction on how to reset your password has been sent to the given email address."
+    },
+    "new_password_set": {
+      "title": "New password set",
+      "text": "Your new password has been set. You can now use it to log in."
+    },
+    "change_password": "Change password",
+    "errors": {
+      "valid_email": "Must be a valid e-mail address",
+      "password_required": "Password is required",
+      "invalid_login": "Invalid username or password.",
+      "inactive_account": "Account is inactive. Please contact the administrator."
+    }
+  },
+  "password_requirements": {
+    "title": "The password must:",
+    "minimum_character_count": "contain at least {num} characters",
+    "lowercase_letter": "contain at least one lowercase letter",
+    "uppercase_letter": "contain at least one uppercase letter",
+    "number": "contain at least one number",
+    "match": "match the repeat password",
+    "not_old_password": "not be the old password"
   }
 }

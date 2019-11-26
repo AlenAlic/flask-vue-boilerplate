@@ -23,6 +23,17 @@ export const ERROR_CODES = {
   SERVER_TIMEOUT: 504
 };
 
+const HTTP_STATUS_MAPPING = {
+  [400]: ERROR_CODES.BAD_REQUEST,
+  [401]: ERROR_CODES.UNAUTHORIZED,
+  [403]: ERROR_CODES.FORBIDDEN,
+  [404]: ERROR_CODES.NOT_FOUND,
+  [413]: ERROR_CODES.PAYLOAD_TOO_LARGE,
+  [500]: ERROR_CODES.SERVER_ERROR,
+  [503]: ERROR_CODES.SERVER_OFFLINE,
+  [504]: ERROR_CODES.SERVER_TIMEOUT
+};
+
 /**
  * Returns true if Error is an AxiosError
  * @param {Error} error
@@ -55,7 +66,7 @@ export function getNetworkErrorCode(error) {
       return ERROR_CODES.NETWORK;
     } else {
       const status = error.response.status;
-      return ERROR_CODES[status] || ERROR_CODES.NETWORK;
+      return HTTP_STATUS_MAPPING[status] || ERROR_CODES.NETWORK;
     }
   } else {
     return ERROR_CODES.UNKNOWN;
@@ -74,6 +85,8 @@ export function localizeNetworkErrorCode(code) {
   switch (code) {
     case ERROR_CODES.NONE:
       return null;
+    case ERROR_CODES.NETWORK:
+      return i18n.t("network-errors.network");
     case ERROR_CODES.SERVER_CORS:
       return i18n.t("network-errors.server-cors");
     case ERROR_CODES.BAD_REQUEST:

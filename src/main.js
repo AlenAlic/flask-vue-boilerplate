@@ -8,28 +8,24 @@ import router from "@/router";
 import store from "@/store";
 import i18n from "@/languages";
 
-// Import the config independent modules.
-import modal from "vue-js-modal";
-import VueAxios from "vue-axios";
-import Notify from "@/plugins/Alerts";
-
 // Service Worker
 import "./registerServiceWorker";
 
-// API calls
+// Import the config independent modules.
 import { frontendApi } from "@/api/frontend";
 import { backendServer } from "@/api/backend";
 import AuthHandler from "@/components/auth/AuthHandler";
 import UtilitiesHandler from "@/assets/js/utilities";
+import Notify from "@/plugins/Alerts";
 import vuetify from "@/plugins/Vuetify";
+import VueAxios from "vue-axios";
 
 // Register the config independent modules.
-Vue.use(modal);
 Vue.use(AuthHandler);
 Vue.use(UtilitiesHandler);
 Vue.use(Notify);
 
-// Turn oof Vue Production tip
+// Turn off Vue Production tip
 Vue.config.productionTip = false;
 
 // Mount App function

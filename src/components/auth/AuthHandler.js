@@ -1,7 +1,5 @@
 import store from "@/store";
-import { LOGIN, LOGOUT, ACTIVATE } from "@/store/modules/auth";
-import { saveServerToken } from "@/api/util/token-storage";
-import { backendServer } from "@/api/util/servers";
+import { LOGIN, LOGOUT, RENEW, ACTIVATE, RESET_PASSWORD } from "@/store/modules/auth";
 
 const AuthHandler = {
   install(Vue) {
@@ -28,14 +26,23 @@ const AuthHandler = {
        * @returns {Promise}
        */
       signInWithUsernameAndPassword(email, password, remember_me) {
-        return store
-          .dispatch(LOGIN, { email, password, remember_me })
-          .then(result => {
-            saveServerToken(backendServer, result.data);
-          })
-          .catch(({ status }) => {
-            throw { status };
-          });
+        return store.dispatch(LOGIN, { email, password, remember_me });
+      },
+
+      /**
+       * Renew a user's session
+       * @returns {Promise}
+       */
+      renew() {
+        return store.dispatch(RENEW);
+      },
+
+      /**
+       * Sign out the currently signed in user.
+       * @returns {Promise}
+       */
+      signOut() {
+        return store.dispatch(LOGOUT);
       },
 
       /**
@@ -49,21 +56,15 @@ const AuthHandler = {
         return store.dispatch(ACTIVATE, { token, password, repeat_password });
       },
 
-      // /**
-      //  * Renew a user's session
-      //  * @returns {Promise<AuthenticatedUser>}
-      //  */
-      // renew() {
-      //   return authApi.renew();
-      // },
-
       /**
-       * Sign out the currently signed in user.
+       * Activate an account using the activation token
+       * @param {string} token
+       * @param password
+       * @param repeat_password
        * @returns {Promise}
        */
-      signOut() {
-        saveServerToken(backendServer, null);
-        store.dispatch(LOGOUT);
+      resetPassword(token, password, repeat_password) {
+        return store.dispatch(RESET_PASSWORD, { token, password, repeat_password });
       }
     };
   }

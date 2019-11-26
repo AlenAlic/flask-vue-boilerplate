@@ -2,18 +2,26 @@ import Vue from "vue";
 import Vuetify from "vuetify/lib";
 import "vuetify/dist/vuetify.min.css";
 import "@mdi/font/css/materialdesignicons.css";
+import variables from "../../assets/css/general/settings.scss";
 
 Vue.use(Vuetify);
 
 const opts = {
   theme: {
-    primary: "#673ab7",
-    secondary: "#2196f3",
-    accent: "#cddc39",
-    error: "#ff5252",
-    warning: "#fb8c00",
-    info: "#2196f3",
-    success: "#4caf50"
+    themes: {
+      light: {
+        primary: variables.primary,
+        secondary: variables.secondary,
+        accent: variables.accent,
+        error: variables.error,
+        warning: variables.warning,
+        info: variables.info,
+        success: variables.success
+      }
+    }
+  },
+  icons: {
+    iconfont: "mdi"
   }
 };
 

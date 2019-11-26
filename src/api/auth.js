@@ -86,16 +86,41 @@ export const authApi = {
     await backendServer.delete(`/auth/logout`);
   },
   /**
+   * Renews the authenticated user session, returns an updated token
+   * @returns {Promise<AuthenticatedUser>}
+   */
+  async renew() {
+    return await backendServer.get(`auth/renew`);
+  },
+  /**
    * Activates a user's account with a given activation token.
    * @param {string} activationToken
+   * @returns {Promise<void>}
+   */
+  async verifyActivationToken(activationToken) {
+    return await backendServer.get(`/auth/activate/${activationToken}`);
+  },
+  /**
+   * Activates a user's account with a given activation token.
+   * @param {string} token
    * @param {string} password - The password to login with.
    * @param {string} repeat_password - Repeat of the newly set password.
    * @returns {Promise<void>}
    */
-  async activate(activationToken, password, repeat_password) {
-    return await backendServer.post(`/auth/activate/${activationToken}`, {
-      password,
-      repeat_password
+  async activate(token, password, repeat_password) {
+    return await backendServer.post(`/auth/activate/${token}`, {
+      password: password,
+      repeat_password: repeat_password
+    });
+  },
+  /**
+   * Sends a request for to reset a user's password.
+   * @param {string} email
+   * @returns {Promise<void>}
+   */
+  async resetPasswordRequest(email) {
+    return await backendServer.post(`/auth/password/reset`, {
+      email
     });
   },
   /**
@@ -106,7 +131,7 @@ export const authApi = {
    * @returns {Promise<void>}
    */
   async resetPassword(token, password, repeat_password) {
-    return await backendServer.post(`/auth/password/reset/${token}`, {
+    return await backendServer.patch(`/auth/password/reset/${token}`, {
       password,
       repeat_password
     });
