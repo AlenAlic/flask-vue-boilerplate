@@ -1,7 +1,12 @@
+import Vue from "vue";
 import { backendServer } from "./servers";
 import { loadServerToken } from "./token-storage";
 import router from "@/router";
-import { ERROR_CODES, getNetworkErrorCode } from "@/api/util/network-errors";
+import {
+  ERROR_CODES,
+  getNetworkErrorCode,
+  localizeNetworkErrorCode
+} from "@/api/util/network-errors";
 
 backendServer.interceptors.response.use(
   response => {
@@ -9,8 +14,13 @@ backendServer.interceptors.response.use(
   },
   error => {
     const errorCode = getNetworkErrorCode(error);
-    if (errorCode === ERROR_CODES.UNAUTHORIZED && router.currentRoute.name !== "home") {
-      router.push({ name: "home" });
+    if (errorCode === ERROR_CODES.NETWORK) {
+      Vue.$notify.error(localizeNetworkErrorCode(errorCode));
+      return Promise.reject(error);
+    }
+    if (errorCode === ERROR_CODES.UNAUTHORIZED && router.currentRoute.name !== "login") {
+      router.push({ name: "login" });
+      return Promise.reject(error);
     }
     return Promise.reject(error);
   }

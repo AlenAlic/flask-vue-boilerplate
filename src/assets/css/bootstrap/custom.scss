@@ -1,0 +1,661 @@
+@import "../../../../node_modules/bootstrap/scss/functions";
+@import "../../../../node_modules/bootstrap/scss/variables";
+@import "../../../../node_modules/bootstrap/scss/mixins";
+
+@import "functions";
+@import "variables";
+@import "utilities";
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  @extend .bg-light;
+}
+
+.container--main {
+  min-width: 100%;
+  min-height: 100vh;
+}
+
+.container--center {
+  height: 100%;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.auth-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .card,
+  .card_subtitle {
+     width: 100%;
+     max-width: $single-card-width;
+  }
+}
+
+// Login Form
+.login-container, .single-card-container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $dark;
+
+  .login-card {
+    width: 100%;
+    max-width: $single-card-width;
+  }
+}
+
+.unselectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+
+.single-card-container {
+  * {
+    width: 100%;
+    max-width: $single-card-width;
+  }
+}
+
+.main-content {
+  padding-left: 0;
+  background-color: $light;
+  width: 100%;
+  height: 100%;
+}
+@include media-breakpoint-up(lg) {
+  .main-content {
+    padding-left: $sidebar-width;
+  }
+}
+
+.navbar-default {
+  min-height: $sidebar-brand-height;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.sidebar {
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  margin-left: 0.75rem;
+  margin-top: 0.75rem;
+  max-width: calc(100% - 1.5rem);
+  -webkit-transition: margin, height 1.25s ease-out;
+  -moz-transition: margin, height 1.25s ease-out;
+  -o-transition: margin, height 1.25s ease-out;
+  transition: margin, height 1.25s ease-out;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  z-index: 1100;
+  background-color: $white;
+  -webkit-box-shadow: 0 0 8px 0 rgba(0,0,0,0.8);
+  -moz-box-shadow: 0 0 8px 0 rgba(0,0,0,0.8);
+  box-shadow: 0 0 8px 0 rgba(0,0,0,0.8);
+
+  &.show {
+    display: block;
+    min-height: auto;
+    //height: calc(100vh - 1.5rem);
+    height: auto;
+    padding-top: 0.5rem;
+    border-radius: 0.5rem;
+    max-height: 85%;
+
+    .sidebar {
+      &-brand {
+        justify-content: space-between;
+        padding-right: 2rem;
+      }
+      &-link {
+        width: auto;
+      }
+    }
+  }
+
+  .sidebar {
+    &-item,
+    &-nav {
+      list-style: none;
+    }
+    &-item, &-heading {
+      padding: .625rem 1.75rem;
+    }
+    &-brand {
+      height: 4rem;
+      display: flex;
+      align-items: center;
+      padding-left: 1.75rem;
+      font-size: 1.25rem;
+      .sidebar-link {
+        color: $dark;
+      }
+      .sidebar-link:focus, .sidebar-link:hover {
+        text-decoration: none;
+        color: $primary;
+      }
+    }
+
+    &-link {
+      color: $dark;
+      width: 100%;
+      display: block;
+    }
+
+    &-link:focus, &-link:hover {
+      text-decoration: none;
+      color: $primary;
+    }
+
+    &-nav {
+      padding-left: 0;
+
+      .sidebar-link > i {
+        min-width: 2.25rem;
+      }
+    }
+
+    &-heading {
+      font-size: .75rem;
+      padding-top: .25rem;
+      padding-bottom: .25rem;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+  }
+}
+
+@include media-breakpoint-up(lg) {
+  .sidebar-toggler {
+    display: none;
+  }
+  .sidebar {
+    min-height: 100vh;
+    width: 100%;
+    margin-left: 0;
+    margin-top: 0;
+    max-width: $sidebar-width;
+    -webkit-transition: margin .25s ease-out;
+    -moz-transition: margin .25s ease-out;
+    -o-transition: margin .25s ease-out;
+    transition: margin .25s ease-out;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+    z-index: 1100;
+    background-color: $white;
+    -webkit-box-shadow: -2px 0 6px 0 rgba(0,0,0,0.8);
+    -moz-box-shadow: -2px 0 6px 0 rgba(0,0,0,0.8);
+    box-shadow: -2px 0 6px 0 rgba(0,0,0,0.8);
+
+    &.show {
+      display: block;
+      min-height: 100vh;
+      height: auto;
+      padding-top: 0;
+      border-radius: 0;
+    }
+
+    .sidebar {
+      &-item,
+      &-nav {
+        list-style: none;
+      }
+      &-item, &-heading {
+        padding: .625rem 1.75rem;
+      }
+      &-brand {
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        padding-left: 1.75rem;
+        font-size: 1.25rem;
+        .sidebar-link {
+          color: $dark;
+        }
+        .sidebar-link:focus, .sidebar-link:hover {
+          text-decoration: none;
+          color: $primary;
+        }
+        .sidebar-close {
+          display: none;
+        }
+      }
+
+      &-link {
+        color: $dark;
+        width: 100%;
+        display: block;
+      }
+
+      &-link:focus, &-link:hover {
+        text-decoration: none;
+        color: $primary;
+      }
+
+      &-nav {
+        padding-left: 0;
+
+        .sidebar-link > i {
+          min-width: 2.25rem;
+        }
+      }
+
+      &-heading {
+        font-size: .75rem;
+        padding-top: .25rem;
+        padding-bottom: .25rem;
+        letter-spacing: .04em;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+
+//// Generate series of `.sidebar-expand-*` responsive classes for configuring
+//// where your navbar collapses.
+//.sidebar-expand {
+//  @each $breakpoint in map-keys($grid-breakpoints) {
+//    $next: breakpoint-next($breakpoint, $grid-breakpoints);
+//    $infix: breakpoint-infix($next, $grid-breakpoints);
+//
+//    &#{$infix} {
+//
+//      @include media-breakpoint-up($next) {
+//        flex-flow: row nowrap;
+//        justify-content: flex-start;
+//
+//        .sidebar-nav {
+//          flex-direction: row;
+//
+//          .dropdown-menu {
+//            position: absolute;
+//          }
+//
+//          .nav-link {
+//            padding-right: $navbar-nav-link-padding-x;
+//            padding-left: $navbar-nav-link-padding-x;
+//          }
+//        }
+//
+//        .sidebar-collapse {
+//          display: flex !important; // stylelint-disable-line declaration-no-important
+//          flex-direction: column;
+//
+//          // Changes flex-bases to auto because of an IE10 bug
+//          flex-basis: auto;
+//        }
+//
+//        .sidebar-toggler {
+//          display: none;
+//        }
+//      }
+//    }
+//  }
+//}
+
+$font-family-party-card-orig: Impact, Haettenschweiler,Franklin Gothic Bold,Charcoal,Helvetica Inserat,Bitstream Vera Sans Bold,Arial Black,sans serif;
+$font-family-party-card: Arial Narrow Helvetica, Lucida Sans Unicode, Verdana,sans serif;
+
+
+$party-border-lg: 2px solid black;
+$party-card-width-lg: 630px;
+//.party-card {
+//  position: relative;
+//  display: flex;
+//  flex-direction: column;
+//  min-width: $party-card-width-lg;
+//  word-wrap: break-word;
+//  background-color: #fff;
+//  background-clip: border-box;
+//  border: $party-border-lg;
+//  border-radius: 3px;
+//  max-width: $party-card-width-lg;
+//  margin: 0 auto;
+//
+//  .party {
+//    &-img {
+//      border: $party-border-lg;
+//      height: 540px;
+//      background-image: none;
+//      background-size: cover;
+//      background-position: center;
+//    }
+//    &-info {
+//      display: grid;
+//      grid-template-columns: 20rem auto 14rem;
+//      text-align: center;
+//      .party-info-container {
+//        display: grid;
+//        grid-template-columns: 6rem auto;
+//        .party {
+//          &-date {
+//            border: $party-border-lg;
+//            font-family: $font-family-party-card;
+//            display: flex;
+//            flex-direction: column;
+//            .party-month {
+//              font-size: 2rem;
+//              flex-grow: 1;
+//            }
+//            .party-day {
+//              flex-grow: 1;
+//              font-size: 3rem;
+//            }
+//          }
+//        ;  &-info-logo {
+//            border: $party-border-lg;
+//            .party-time {
+//              font-family: $font-family-party-card;
+//              border-bottom: $party-border-lg;
+//              display: flex;
+//              flex-direction: row;
+//              justify-content: center;
+//              .day {
+//                padding: 0 0.5rem;
+//              }
+//            }
+//            .party-logo {
+//              border-top: $party-border-lg;
+//              height: 6rem;
+//              background-image: none;
+//              background-size: cover;
+//              background-position: center;
+//            }
+//          }
+//        }
+//      }
+//      .party {
+//        &-venue {
+//          border: $party-border-lg;
+//          font-size: 4rem;
+//          display:flex;
+//          justify-content:center;
+//          align-items:center;
+//          font-family: $font-family-party-card;
+//          text-transform: uppercase;
+//        }
+//        &-buy {
+//          font-size: 1.25rem;
+//          border: $party-border-lg;
+//          .party-buy-tickets{
+//            padding: 0.5rem 0.5rem;
+//            height: 100%;
+//            display: flex;
+//            flex-direction: column;
+//            justify-content: space-between;
+//            .tables-container {
+//              display: flex;
+//              justify-content: space-between;
+//            }
+//          }
+//        }
+//      }
+//    }
+//  }
+//}
+$party-card-border-radius : 1rem;
+.party-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border-radius: $party-card-border-radius;
+  margin: 0 auto;
+  min-width: $party-card-width-lg;
+  max-width: $party-card-width-lg;
+  //border: $party-border-lg;
+
+  .party {
+    &-img {
+      border: $party-border-lg;
+      height: 540px;
+      background-image: none;
+      background-size: cover;
+      background-position: center;
+      border-top-left-radius: $party-card-border-radius;
+      border-top-right-radius: $party-card-border-radius;
+    }
+    &-venue {
+      border: $party-border-lg;
+      font-size: 3rem;
+      display: flex;
+      justify-content: center;
+      font-family: $font-family-party-card;
+      text-transform: uppercase;
+    }
+    &-date {
+      border: $party-border-lg;
+      display: none;
+    }
+    &-info {
+      display: grid;
+      grid-template-columns: 22rem auto;
+      text-align: center;
+      .party-info-container {
+        display: grid;
+        grid-template-columns: auto 14rem;
+        .party {
+          &-date {
+            border: $party-border-lg;
+            font-family: $font-family-party-card;
+            display: flex;
+            flex-direction: column;
+            border-bottom-left-radius: $party-card-border-radius;
+            .party-month {
+              font-size: 2.8rem;
+              flex-grow: 1;
+            }
+            .party-day {
+              flex-grow: 1;
+              font-size: 3.2rem;
+            }
+          }
+          &-date-full {
+            display: none;
+          }
+          &-info-logo {
+            border: $party-border-lg;
+            .party-time {
+              font-family: $font-family-party-card;
+              border-bottom: $party-border-lg;
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              padding: 0.15rem 0;
+              font-size: 1.25rem;
+            }
+            .party-logo {
+              border-top: $party-border-lg;
+              height: 7rem;
+              background-image: none;
+              background-size: cover;
+              background-position: center;
+            }
+          }
+        }
+      }
+      .party-buy {
+        font-size: 1.25rem;
+        border: $party-border-lg;
+        border-bottom-right-radius: $party-card-border-radius;
+      }
+    }
+  }
+}
+$party-border: 1px solid black;
+$party-card-width: 91vw;
+@media (max-width: breakpoint(md)){
+  .party-card {
+    min-width: $party-card-width;
+    max-width: $party-card-width;
+    //border: $party-border;
+
+    .party {
+      &-img {
+        border: $party-border;
+        height: 78vw;
+      }
+      &-venue {
+        border: $party-border;
+        font-size: 1.5rem;
+        font-family: $font-family-party-card;
+      }
+      &-date {
+        border: $party-border;
+        display: none;
+        flex-direction: row;
+        justify-content: space-around;
+        font-size: 1rem;
+      }
+      &-info {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        .party-info-container {
+          display: grid;
+          grid-template-columns: auto 10rem;
+          .party {
+            &-date {
+              display: none;
+            }
+            &-date-full {
+              border: $party-border;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-around;
+            }
+            &-info-logo {
+              border: $party-border;
+              .party-time {
+                display: none;
+              }
+              .party-logo {
+                border-top: none;
+                height: 5rem;
+                background-image: none;
+                background-size: cover;
+                background-position: center;
+              }
+            }
+          }
+        }
+        .party-buy {
+          font-size: 1rem;
+          border: $party-border;
+          border-bottom-left-radius: $party-card-border-radius;
+        }
+      }
+    }
+  }
+}
+
+.party-buy-tickets{
+  padding: 0.5rem 0.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.tickets-container {
+  display: flex;
+  justify-content: space-between;
+  .party-counter {
+    .party-amount {
+      max-width: 2.5rem;
+      width: auto;
+      border: 1px solid gray;
+      margin: 0 0.75rem;
+      padding: 0 0.25rem;
+      text-align: center;
+    }
+  }
+}
+.tables-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-right-split-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.purchase-order {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+  .card {
+    min-width: 300px;
+  }
+}
+
+.preview {
+  background-image: none;
+  background-size: cover;
+  background-position: center;
+  &.image {
+    width: 42vw;
+    height: 36vw;
+  }
+  &.logo {
+    width: 20vw;
+    height: 10vw;
+  }
+}
+
+@media (max-width: breakpoint(md)) {
+  .preview {
+    &.image {
+      width: 63vw;
+      height: 54vw;
+    }
+    &.logo {
+      width: 70vw;
+      height: 35vw;
+    }
+  }
+}
+
+.code-text{
+  font-size: 5rem;
+}
+
+@include media-breakpoint-up(lg) {
+  .modal {
+    &.sidebar-modal {
+      left: $sidebar-width;
+      width: calc(100% - #{$sidebar-width});
+    }
+  }
+}

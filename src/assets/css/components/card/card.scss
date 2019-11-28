@@ -1,0 +1,189 @@
+@import "../../general/settings";
+
+$card-indent--small: 0.5 * $multiplier;
+$card-indent: $multiplier;
+$card-indent--large: 1.6 * $multiplier;
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: $color-default;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: $border-radius;
+}
+
+.card > hr {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.card > .list-group:first-child .list-group-item:first-child {
+  border-top-left-radius: $border-radius;
+  border-top-right-radius: $border-radius;
+}
+
+.card > .list-group:last-child .list-group-item:last-child {
+  border-bottom-right-radius: $border-radius;
+  border-bottom-left-radius: $border-radius;
+}
+
+.card-body {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: $card-indent--large;
+}
+
+.card-title {
+  font-size: $font-size-l;
+  font-weight: $font-weight-bold;
+  margin-bottom: $card-indent;
+}
+
+.card-subtitle {
+  margin-top: -$card-indent--small;
+  margin-bottom: 0;
+}
+
+.card-text:last-child {
+  margin-bottom: 0;
+}
+
+.card-link:hover {
+  text-decoration: none;
+}
+
+.card-link + .card-link {
+  margin-left: $card-indent--large;
+}
+
+.card-header {
+  padding: $card-indent $card-indent--large;
+  margin-bottom: 0;
+  background: $color-theme-dark;
+  color: $color-default;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card-header:first-child {
+  border-radius: calc(#{$border-radius} - 1px) calc(#{$border-radius} - 1px) 0 0;
+}
+
+.card-header + .list-group .list-group-item:first-child {
+  border-top: 0;
+}
+
+.card-footer {
+  padding: $card-indent $card-indent--large;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-top: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.card-footer:last-child {
+  border-radius: 0 0 calc(#{$border-radius} - 1px) calc(#{$border-radius} - 1px);
+}
+
+.card-header-tabs {
+  margin-right: -$card-indent;
+  margin-bottom: -$card-indent;
+  margin-left: -$card-indent;
+  border-bottom: 0;
+}
+
+.card-header-pills {
+  margin-right: -$card-indent;
+  margin-left: -$card-indent;
+}
+
+.card-img-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: $card-indent--large;
+}
+
+.card-img,
+.card-img-top,
+.card-img-bottom {
+  flex-shrink: 0;
+  width: 100%;
+}
+
+.card-img,
+.card-img-top {
+  border-top-left-radius: calc(#{$border-radius} - 1px);
+  border-top-right-radius: calc(#{$border-radius} - 1px);
+}
+
+.card-img,
+.card-img-bottom {
+  border-bottom-right-radius: calc(#{$border-radius} - 1px);
+  border-bottom-left-radius: calc(#{$border-radius} - 1px);
+}
+
+.card-deck .card {
+  margin-bottom: $indent-base;
+}
+
+@media (min-width: 576px) {
+  .card-deck {
+    display: flex;
+    flex-flow: row wrap;
+    margin-right: -$indent-base;
+    margin-left: -$indent-base;
+  }
+  .card-deck .card {
+    flex: 1 0 0%;
+    margin-right: $indent-base;
+    margin-bottom: 0;
+    margin-left: $indent-base;
+  }
+}
+
+.card-group > .card {
+  margin-bottom: $indent-base;
+}
+
+@media (min-width: 576px) {
+  .card-group {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  .card-group > .card {
+    flex: 1 0 0%;
+    margin-bottom: 0;
+  }
+  .card-group > .card + .card {
+    margin-left: 0;
+    border-left: 0;
+  }
+  .card-group > .card:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  .card-group > .card:not(:last-child) .card-img-top,
+  .card-group > .card:not(:last-child) .card-header {
+    border-top-right-radius: 0;
+  }
+  .card-group > .card:not(:last-child) .card-img-bottom,
+  .card-group > .card:not(:last-child) .card-footer {
+    border-bottom-right-radius: 0;
+  }
+  .card-group > .card:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+  .card-group > .card:not(:first-child) .card-img-top,
+  .card-group > .card:not(:first-child) .card-header {
+    border-top-left-radius: 0;
+  }
+  .card-group > .card:not(:first-child) .card-img-bottom,
+  .card-group > .card:not(:first-child) .card-footer {
+    border-bottom-left-radius: 0;
+  }
+}

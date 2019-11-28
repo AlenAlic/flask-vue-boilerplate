@@ -1,23 +1,28 @@
 <template>
-  <div class="wrapper" id="app">
-    <Header></Header>
-    <main class="main">
-      <div class="container no-padding full-height">
-        <router-view></router-view>
-      </div>
-    </main>
-    <Footer></Footer>
+  <div class="container--main">
+    <Sidenav
+      v-if="$auth.isAuthenticated"
+      :drawer="drawer"
+      @toggleDrawer="drawer = !drawer"
+    ></Sidenav>
+    <Navbar v-if="$auth.isAuthenticated" @toggleDrawer="drawer = !drawer"></Navbar>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
 import "@mdi/font/css/materialdesignicons.css";
-import Header from "@/components/general/Header";
-import Footer from "@/components/general/Footer";
+import Sidenav from "@/components/general/Sidenav";
+import Navbar from "@/components/general/Navbar";
 
 export default {
   name: "App",
-  components: { Header, Footer }
+  components: { Navbar, Sidenav },
+  data: function() {
+    return {
+      drawer: false
+    };
+  }
 };
 </script>
 

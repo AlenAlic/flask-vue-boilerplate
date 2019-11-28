@@ -1,7 +1,7 @@
 from flask import jsonify, request, json, render_template, current_app
-from flask_login import login_required
+from flask_login import login_required, current_user
 from backend.auth import bp
-from backend.models import User
+from backend.models import User, get_token_from_request
 from backend.values import *
 from backend import db
 from backend.util import auth_token
@@ -44,20 +44,23 @@ def check_password_requirements(new_password, repeat_password):
     return all([equal, length, lowercase, uppercase, number])
 
 
-@bp.route('/activate/<string:token>', methods=[GET])
+@bp.route('/activate/<string:token>', methods=[GET, POST])
 def activate(token):
     u = User.query.filter(User.auth_code == token).first()
     if u is not None:
-        form = json.loads(request.data)
-        if check_password_requirements(form["new_password"], form["repeat_password"]):
-            u.set_password(form["new_password"])
-            u.auth_code = None
-            u.is_active = True
-            db.session.commit()
+        if request.method == GET:
             return OK
-        return BAD_REQUEST
+        if request.method == POST:
+            form = json.loads(request.data)
+            if check_password_requirements(form["password"], form["repeat_password"]):
+                u.set_password(form["password"])
+                u.auth_code = None
+                u.is_active = True
+                db.session.commit()
+                return OK
+            return BAD_REQUEST
     else:
-        return BAD_REQUEST
+        return NOT_FOUND
 
 
 @bp.route('/login', methods=[POST])
@@ -69,6 +72,13 @@ def login():
     elif u.is_active:
         return jsonify(u.get_auth_token(expires_in=SECONDS_MONTH if form["remember_me"] else SECONDS_DAY))
     return UNAUTHORIZED
+
+
+@bp.route('/renew', methods=[GET])
+@login_required
+def renew():
+    data = get_token_from_request(request)
+    return jsonify(current_user.get_auth_token(expires_in=int(data["exp"]-data["iat"])))
 
 
 @bp.route('/logout', methods=[DELETE])

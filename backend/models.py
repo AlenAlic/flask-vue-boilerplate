@@ -25,11 +25,15 @@ class TrackModifications(object):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
 
 
+def get_token_from_request(request):
+    token = request.headers.get("Authorization").replace("Bearer ", "")
+    return jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=['HS256'])
+
+
 @login.request_loader
 def load_user(request):
     try:
-        token = request.headers.get("Authorization").replace("Bearer ", "")
-        data = jwt.decode(token, current_app.config['SECRET_KEY'], algorithms=['HS256'])
+        data = get_token_from_request(request)
         user_id = data["id"]
         reset_index = data["reset_index"]
     except (jwt.exceptions.InvalidTokenError, AttributeError, KeyError):

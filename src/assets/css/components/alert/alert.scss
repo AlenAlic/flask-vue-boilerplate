@@ -2,10 +2,30 @@
 
 .alert
 {
-    color: $color-default;
-    padding: $indent-3;
-    text-align: center;
-    border-radius: $border-radius;
-    font-weight: $font-weight-semibold;
-    background: $color-grey-dark;
+  font-family: "Roboto", sans-serif;
+  color: white;
+  text-align: left;
+  border-radius: 4px;
+}
+
+
+.alert--info
+{
+    @extend .alert;
+    background: $info;
+}
+.alert--success
+{
+    @extend .alert;
+    background: $success;
+}
+.alert--warning
+{
+    @extend .alert;
+    background: $warning;
+}
+.alert--error
+{
+    @extend .alert;
+    background: $error;
 }

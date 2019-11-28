@@ -8,7 +8,8 @@ const PageNotFound = () => import("@/pages/PageNotFound.vue");
 const DummyPage = () => import("@/pages/Dummy.vue");
 
 // Pages modules
-import authPages from "@/router/auth";
+import authPages from "@/router/modules/auth";
+import userRoutes from "@/router/modules/user";
 
 Vue.use(VueRouter);
 
@@ -32,6 +33,8 @@ const routes = [
       debugRoute: true
     }
   },
+  authPages,
+  userRoutes,
   {
     path: "/dashboard",
     name: "dashboard",
@@ -40,7 +43,30 @@ const routes = [
       auth: true
     }
   },
-  authPages,
+  {
+    path: "/page1",
+    name: "page1",
+    component: DummyPage,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: "/page2",
+    name: "page2",
+    component: DummyPage,
+    meta: {
+      auth: true
+    }
+  },
+  {
+    path: "/etc",
+    name: "etc",
+    component: DummyPage,
+    meta: {
+      auth: true
+    }
+  },
   {
     path: "**",
     name: "PageNotFound",
@@ -51,6 +77,7 @@ const routes = [
 const router = new VueRouter({
   mode: "history",
   linkActiveClass: "is-active",
+  linkExactActiveClass: "primary",
   routes
 });
 

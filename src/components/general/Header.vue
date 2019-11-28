@@ -1,37 +1,33 @@
 <template>
-  <header class="header">
-    <div class="container">
-      <router-link :to="{ name: 'home' }" class="header__logo">
-        <img src="../../assets/logo-vue.png" alt="FVB" height="32px" />
-      </router-link>
-      <nav class="nav">
-        <ul>
-          <li class="nav__item">
-            <router-link :to="{ name: 'dashboard' }" class="nav__link">
-              {{ $t("menu.dashboard") }}
-            </router-link>
-          </li>
-        </ul>
-      </nav>
-
-      <button @click="signOut" class="header__logout">
-        {{ $t("menu.signout") }}
-      </button>
+  <nav class="navbar bg-primary navbar-default navbar-dark">
+    <button class="navbar-toggler sidebar-toggler" @click="$emit('toggleDrawer')">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="ml-auto">
+      <a
+        role="button"
+        href="javascript:void(0)"
+        class="btn btn-outline-light"
+        data-toggle="dropdown"
+      >
+        <i class="fas fa-user-circle mr-2"></i>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right mr-3" style="margin-top: -0.75rem;">
+        <span class="dropdown-item-text text-muted text-uppercase" style="font-size: 0.75rem"
+          >Welcome</span
+        >
+        <a class="dropdown-item" href="#"><i class="fas fa-user-edit mr-2"></i>Profile</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item"><i class="fas fa-sign-out-alt mr-2"></i>Sign out</a>
+      </div>
     </div>
-  </header>
+  </nav>
 </template>
 
 <script>
 export default {
-  name: "Header",
-  methods: {
-    signOut: function() {
-      this.$auth.signOut().then(() => {
-        this.$router.replace({
-          name: "home"
-        });
-      });
-    }
-  }
+  name: "Navbar"
 };
 </script>
+
+<style scoped></style>
