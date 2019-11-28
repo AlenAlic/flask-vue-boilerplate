@@ -1,8 +1,9 @@
 <template>
   <v-app>
-    <Header @toggleDrawer="drawer = !drawer" />
+    <Header v-if="$auth.isAuthenticated" @toggleDrawer="drawer = !drawer" />
 
     <v-navigation-drawer
+      v-if="$auth.isAuthenticated"
       v-model="drawer"
       :clipped="$vuetify.breakpoint.mdAndUp"
       :permanent="$vuetify.breakpoint.lgAndUp"
@@ -18,18 +19,15 @@
         </transition>
       </v-container>
     </v-content>
-
-    <Footer />
   </v-app>
 </template>
 
 <script>
 import NavigationDrawerContent from "@/components/general/NavigationDrawerContent";
 import Header from "@/components/general/Header";
-import Footer from "@/components/general/Footer";
 export default {
   name: "App",
-  components: { NavigationDrawerContent, Header, Footer },
+  components: { NavigationDrawerContent, Header },
   data: () => ({
     drawer: null
   }),

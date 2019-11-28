@@ -6,7 +6,7 @@
       <img alt="Vue logo" src="../assets/logo-vue.png" height="200" />
     </v-col>
     <v-col cols="12" class="text-center">
-      <router-link tag="span" to="auth">
+      <router-link tag="span" to="{ name: 'login'}">
         <v-btn color="primary">
           Authentication
         </v-btn>

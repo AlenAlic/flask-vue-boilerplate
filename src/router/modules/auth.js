@@ -9,7 +9,7 @@ const authRoutes = {
   component: Authentication,
   children: [
     {
-      path: "/",
+      path: "/login",
       name: "login",
       component: LoginCard
     },

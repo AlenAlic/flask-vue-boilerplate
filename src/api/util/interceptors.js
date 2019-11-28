@@ -18,7 +18,7 @@ backendServer.interceptors.response.use(
       Vue.$notify.error(localizeNetworkErrorCode(errorCode));
       return Promise.reject(error);
     }
-    if (errorCode === ERROR_CODES.UNAUTHORIZED && router.currentRoute.name !== "login") {
+    if (errorCode === ERROR_CODES.UNAUTHORIZED && router.currentRoute.meta.auth) {
       router.push({ name: "login" });
       return Promise.reject(error);
     }

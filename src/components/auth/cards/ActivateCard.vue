@@ -38,7 +38,6 @@
                 type="password"
               ></v-text-field>
               <password-requirements
-                ref="req"
                 :password="password"
                 :repeat_password="repeatPassword"
                 @requirements="passwordRequirements"
