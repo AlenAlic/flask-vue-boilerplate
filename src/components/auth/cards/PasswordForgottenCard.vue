@@ -5,24 +5,25 @@
         <div class="card-body px-lg-4 py-4" v-if="!newPasswordSent">
           <div class="text-center">
             <h2>{{ $t("auth.request_new_password") }}</h2>
-            <p>Fill in your e-mail address below to receive a password reset token.</p>
           </div>
           <form class="form w-100" @submit.prevent="requestPassword">
             <TextField
-              :placeholder="$t('auth.email')"
-              type="email"
               v-model="email"
               :rules="emailRules"
+              icon="fas fa-envelope"
+              :placeholder="$t('auth.email')"
+              type="email"
             ></TextField>
             <input
               class="btn btn-primary"
               type="submit"
               :value="$t('auth.request_new_password')"
               :disabled="!$util.isEmail(email)"
+              @click="requestPassword"
             />
           </form>
           <router-link tag="button" class="btn btn-outline-dark mt-2" :to="{ name: 'login' }">
-            {{ $t("navigation.back_to_login_page") }}
+            {{ $t("general.cancel") }}
           </router-link>
         </div>
         <div v-else class="card-body">

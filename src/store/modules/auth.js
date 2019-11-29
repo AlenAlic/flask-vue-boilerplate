@@ -171,6 +171,9 @@ export default {
   getters: {
     currentUser: state => {
       return state.user;
+    },
+    fullName: state => {
+      return state.user ? state.user.fullName : null;
     }
   }
 };

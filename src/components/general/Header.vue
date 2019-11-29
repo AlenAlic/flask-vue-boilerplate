@@ -1,33 +1,68 @@
 <template>
   <nav class="navbar bg-primary navbar-default navbar-dark">
-    <button class="navbar-toggler sidebar-toggler" @click="$emit('toggleDrawer')">
+    <button
+      class="navbar-toggler sidebar-toggler"
+      @click="$emit('toggleDrawer')"
+      v-if="showSidenavButton"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="ml-auto">
-      <a
-        role="button"
-        href="javascript:void(0)"
-        class="btn btn-outline-light"
-        data-toggle="dropdown"
-      >
+      <div class="btn btn-outline-light" @click="openDropdown = !openDropdown">
         <i class="fas fa-user-circle mr-2"></i>
-      </a>
-      <div class="dropdown-menu dropdown-menu-right mr-3" style="margin-top: -0.75rem;">
-        <span class="dropdown-item-text text-muted text-uppercase" style="font-size: 0.75rem"
-          >Welcome</span
-        >
-        <a class="dropdown-item" href="#"><i class="fas fa-user-edit mr-2"></i>Profile</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item"><i class="fas fa-sign-out-alt mr-2"></i>Sign out</a>
+        {{ $auth.fullName || "User" }}
       </div>
+      <dropdown :open="openDropdown">
+        <span class="dropdown-item-text text-muted text-uppercase dropdown-title">Welcome</span>
+        <div @click="openDropdown = false">
+          <router-link :to="{ name: 'profile' }" tag="a" class="dropdown-item">
+            <i class="fas fa-user-edit mr-2"></i>{{ $t("menu.profile") }}
+          </router-link>
+        </div>
+        <div class="dropdown-divider"></div>
+        <span class="dropdown-item" @click="signOut()">
+          <i class="fas fa-sign-out-alt mr-2"></i>{{ $t("auth.log_out") }}
+        </span>
+      </dropdown>
     </div>
   </nav>
 </template>
 
 <script>
+import Dropdown from "@/components/dropdown/Dropdown";
+
 export default {
-  name: "Navbar"
+  name: "Header",
+  components: { Dropdown },
+  props: { showSidenavButton: Boolean },
+  data: function() {
+    return {
+      openDropdown: false
+    };
+  },
+  methods: {
+    signOut: function() {
+      this.$auth.signOut().then(() => {
+        this.$router.push({
+          name: "home"
+        });
+      });
+    }
+  }
 };
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+@import "../../assets/css/bootstrap/bootstrap.defaults";
+.navbar-default {
+  min-height: $sidebar-brand-height;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+@media screen and (min-width: 1200px) {
+  .navbar-default {
+    padding-left: calc(#{$sidebar-width} + 1rem);
+  }
+}
+</style>

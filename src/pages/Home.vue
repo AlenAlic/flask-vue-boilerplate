@@ -5,7 +5,7 @@
       <img alt="Flask logo" src="../assets/logo-flask.png" height="200" />
       <img alt="Vue logo" src="../assets/logo-vue.png" height="200" />
       <div>
-        <router-link tag="button" class="btn btn-primary" to="auth">
+        <router-link tag="button" class="btn btn-primary" :to="{ name: 'login' }">
           Authentication
         </router-link>
       </div>

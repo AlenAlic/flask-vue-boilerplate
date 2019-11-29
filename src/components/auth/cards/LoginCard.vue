@@ -3,8 +3,7 @@
     <div class="card bg-light border-0">
       <div class="card-body px-lg-4 py-4">
         <div class="text-center">
-          <h2>Title</h2>
-          <h4 class="mb-4">Sign in</h4>
+          <h2>{{ $t("auth.log_in") }}</h2>
         </div>
         <form class="form" @submit.prevent="login">
           <TextField

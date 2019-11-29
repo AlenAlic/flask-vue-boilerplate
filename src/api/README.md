@@ -11,7 +11,7 @@ Additionally, the API modules **should** be documented with jsdoc comments to en
 Path | Purpose
 --- | ---
 `auth.js` | Abstraction for authentication and account management (activation, password reset, etc)
-`example.js` | Provides a boilerplate for new endpoint abstractions
+`backend.js` | Abstracts file fetching from the backend server that the app is hosted on.
 `frontend.js` | Abstracts file fetching from the frontend server that the app is hosted on.
 `util/` | Api logic that is not an abstraction
 `util/interceptors.js` | Adds request and response interceptors to server instances. This is decoupled from the singleton instance creation so that it can import code that also uses the server instances (indirectly) to avoid circular depencies.

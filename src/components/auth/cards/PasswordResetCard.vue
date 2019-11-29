@@ -4,7 +4,7 @@
       <transition name="fade" mode="out-in">
         <div class="card-body px-lg-4 py-4" v-if="!newPasswordSet">
           <div class="text-center">
-            <h2>Change password</h2>
+            <h2>{{ $t("auth.change_password") }}</h2>
           </div>
           <form class="form" @submit.prevent="login">
             <TextField
@@ -52,10 +52,10 @@
 </template>
 
 <script>
+import PasswordRequirements from "@/components/auth/PasswordRequirements";
 import { ERROR_CODES, getNetworkErrorCode } from "@/api/util/network-errors";
 import i18n from "@/languages";
 import TextField from "@/components/form/TextField";
-import PasswordRequirements from "@/components/auth/PasswordRequirements";
 export default {
   name: "PasswordResetCard",
   components: { PasswordRequirements, TextField },

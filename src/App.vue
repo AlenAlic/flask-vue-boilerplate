@@ -2,26 +2,54 @@
   <div class="container--main">
     <Sidenav
       v-if="$auth.isAuthenticated"
-      :drawer="drawer"
-      @toggleDrawer="drawer = !drawer"
+      :drawer="showDrawer"
+      @hideDrawer="drawer = false"
+      @clickedLink="hideDrawer"
     ></Sidenav>
-    <Navbar v-if="$auth.isAuthenticated" @toggleDrawer="drawer = !drawer"></Navbar>
-    <router-view></router-view>
+    <Header
+      v-if="$auth.isAuthenticated"
+      @toggleDrawer="drawer = !drawer"
+      :showSidenavButton="!windowIsWide"
+    ></Header>
+    <div class="full-width-height" :class="{ 'main-content': $auth.isAuthenticated }">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
 import "@mdi/font/css/materialdesignicons.css";
 import Sidenav from "@/components/general/Sidenav";
-import Navbar from "@/components/general/Navbar";
+import Header from "@/components/general/Header";
 
 export default {
   name: "App",
-  components: { Navbar, Sidenav },
+  components: { Header, Sidenav },
   data: function() {
     return {
-      drawer: false
+      drawer: false,
+      windowWidth: window.innerWidth
     };
+  },
+  computed: {
+    windowIsWide() {
+      return this.windowWidth >= 1200;
+    },
+    showDrawer() {
+      return this.windowIsWide || this.drawer;
+    }
+  },
+  methods: {
+    hideDrawer: function() {
+      if (!this.windowIsWide) this.drawer = false;
+    }
+  },
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener("resize", () => {
+        this.windowWidth = window.innerWidth;
+      });
+    });
   }
 };
 </script>
