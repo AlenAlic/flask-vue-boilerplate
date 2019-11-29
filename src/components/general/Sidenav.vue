@@ -27,9 +27,7 @@
             :to="{ name: item.to }"
           >
             <div @click="clickedLink" class="sidebar-link">
-              <!--            <router-link :to="{ name: item.to }" tag="a" class="sidebar-link">-->
               <i class="mr-2" :class="item.icon"></i>{{ item.title }}
-              <!--            </router-link>-->
             </div>
           </router-link>
         </ul>
