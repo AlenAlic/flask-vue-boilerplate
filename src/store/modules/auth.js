@@ -45,7 +45,7 @@ export default {
   mutations: {
     [SET_USER](state, token) {
       saveServerToken(backendServer, token);
-      state.user = new AuthenticatedUser(token);
+      state.user = token ? new AuthenticatedUser(token) : null;
     },
 
     [LOGIN_REQUEST](state) {
@@ -120,7 +120,7 @@ export default {
       return authApi
         .logout()
         .then(() => {
-          saveServerToken(backendServer, null);
+          commit(SET_USER, null);
           commit(LOGOUT_SUCCESS);
         })
         .catch(error => {

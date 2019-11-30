@@ -1,7 +1,7 @@
 <template>
   <div class="mx-auto">
     <v-card max-width="400">
-      <v-form ref="form" v-model="valid">
+      <v-form ref="form" v-model="valid" @submit.prevent="login">
         <v-card-title>{{ $t("auth.log_in") }}</v-card-title>
         <v-card-text>
           <v-text-field
@@ -26,6 +26,7 @@
             color="primary"
             text
             @click="login"
+            type="submit"
           >
             {{ $t("auth.log_in") }}
           </v-btn>

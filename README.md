@@ -26,7 +26,6 @@ This exposes the backend on `http://127.0.0.1:4040`.
 ## Tweaks
 ### Remove references to boilerplate
 - Change the name in `package.json` and `package-lock.json`.
-- Change the short name in `/public/manifest.json`.
 - Change the `TOKEN_PREFIX` constant in `/src/api/util/token-storage.js`.
 - Change any references in `/public/index.html`.
 - Change any references in `/public/manifest.json`.

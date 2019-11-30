@@ -2,7 +2,12 @@
   <div class="mx-auto">
     <v-card max-width="400">
       <transition name="fade" mode="out-in">
-        <v-form ref="form" v-model="valid" v-if="!newPasswordSent">
+        <v-form
+          ref="form"
+          v-model="valid"
+          v-if="!newPasswordSent"
+          @submit.prevent="requestPassword"
+        >
           <v-card-title>{{ $t("auth.request_new_password") }}</v-card-title>
           <v-card-text>
             <v-text-field

@@ -2,7 +2,7 @@
   <div class="mx-auto">
     <v-card max-width="400">
       <transition name="fade" mode="out-in">
-        <v-form ref="form" lazy-validation v-if="!newPasswordSet">
+        <v-form ref="form" lazy-validation v-if="!newPasswordSet" @submit.prevent="changePassword">
           <v-card-title>{{ $t("auth.change_password") }}</v-card-title>
           <v-card-text>
             <v-text-field

@@ -22,7 +22,7 @@
           </v-card-actions>
         </div>
         <div v-else>
-          <v-form ref="form" lazy-validation>
+          <v-form ref="form" lazy-validation @submit.prevent="activate">
             <v-card-text>
               {{ $t("auth.activate.set_password") }}
               <v-text-field
